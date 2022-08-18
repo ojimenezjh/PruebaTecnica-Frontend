@@ -31,12 +31,14 @@ export class CreateEditRequestComponent implements OnInit {
   async onSubmit(e: Event) {
     e.preventDefault();
 
+    console.log('dd',this.manager);
+    
+
     let result: any;
 
     const { note } = this.formData;
-    const { id } = this.employee;
-    const id_employee = id;
-    const { id_manager } = this.manager;
+    const id_employee = this.employee.id;
+    const id_manager = this.manager.id_manager;
 
     const body = {
       id_manager,
@@ -58,6 +60,8 @@ export class CreateEditRequestComponent implements OnInit {
         ...body,
         new_salary
       };
+      console.log(salaryRequestbody);
+      
       result = await this.requestService.postSalaryRequests(salaryRequestbody)
     } 
     else if (this.type === 'Solicitud de vacances'){
@@ -71,7 +75,7 @@ export class CreateEditRequestComponent implements OnInit {
     }
       result.data.subscribe(
       (response: any) => {
-        console.log(response.body);
+        console.log(response.status);
         this.loading = false;
         return this.isPopupVisible = false;
       },

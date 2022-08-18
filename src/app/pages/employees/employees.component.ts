@@ -35,6 +35,7 @@ export class EmployeesComponent implements OnInit {
     if (!this.dataSource) {
       this.loading = true;
       this.manager = this.userAuthService.getUser();
+      
          const managerDepartment  = this.manager.departments[0].name;
          
          const result = await this.userAuthService.roleMatch('Responsable RRHH') 

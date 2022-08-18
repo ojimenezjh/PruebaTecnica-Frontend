@@ -20,7 +20,7 @@ export class RequestContentComponent implements OnInit {
   canAccept: boolean;
 
   constructor(private requestService: RequestsService, private userAuthService: UserAuthService) {
-    this.canAccept = this.userAuthService.roleMatch('Responsablel RRHH');
+    this.canAccept = this.userAuthService.roleMatch('Responsable RRHH');
     this.colCountByScreen = {
       xs: 1,
       sm: 1,
