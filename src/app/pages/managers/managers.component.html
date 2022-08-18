@@ -1,0 +1,63 @@
+
+<div class="content-block flex-box">
+      <h2>Managers</h2>
+  </div>
+  
+  <div class="loading-center" *ngIf="loading">
+    <dx-load-indicator width="150px" height="150px" [visible]="true"></dx-load-indicator>
+  </div>
+  
+  <dx-data-grid  #managersGrid *ngIf="!loading" class="dx-card wide-card"
+    [keyExpr]="['id']"
+    (onRowClick)="onRowClick($event)"
+    [dataSource]="dataSource"
+    [showBorders]="false"
+    [focusedRowEnabled]="true"
+    [columnAutoWidth]="true"
+    [columnHidingEnabled]="true">
+  
+    <dxo-paging [pageSize]="12"></dxo-paging>
+    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+  
+    <dxi-column
+      dataField="id"
+      caption="ID Manager"
+      [width]="120"
+      alignment="center"
+      [hidingPriority]="10">
+    </dxi-column>
+    <dxi-column
+      dataField="id_employee"
+      caption="ID Empleat"
+      [width]="120"
+      alignment="center"
+      [hidingPriority]="8">
+    </dxi-column>
+    <dxi-column
+      dataField="username"
+      caption="Usuari"
+      [hidingPriority]="6">
+    </dxi-column>
+    <dxi-column
+    dataField="name"
+    caption="Nom"
+    [hidingPriority]="4">
+  </dxi-column>
+    <dxi-column
+      dataField="surnames"
+      caption="Cognmos"
+      [hidingPriority]="5">
+    </dxi-column>
+    <dxi-column
+    dataField="departments[0].name"
+    caption="Departament"
+    [hidingPriority]="5">
+  </dxi-column>
+  <dxi-column
+    dataField="active"
+    caption="Actiu"
+    [hidingPriority]="5">
+  </dxi-column>
+  </dx-data-grid>
+  

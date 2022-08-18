@@ -1,0 +1,102 @@
+<dx-popup
+  title="{{ requestTitle() }}"
+  [(visible)]="isPopupVisible"
+  [resizeEnabled]="true"
+  [width]="600"
+  [height]="600"
+>
+  <div *dxTemplate="let data of 'content'">
+    <dx-scroll-view width="100%" height="100%">
+      <dx-button
+        icon="close"
+        style="float: right"
+        (onClick)="isPopupVisible = false"
+      >
+      </dx-button>
+      <form (submit)="onSubmit($event)">
+        <div class="loading" *ngIf="loading">
+          <dx-load-indicator
+            width="80px"
+            height="80px"
+            [visible]="true"
+          ></dx-load-indicator>
+        </div>
+        <dx-form
+          *ngIf="!loading"
+          id="form"
+          [formData]="formData"
+          labelLocation="top"
+          [colCountByScreen]="colCountByScreen"
+        >
+          <dxi-item
+            dataField="id_employee"
+            [label]="{ text: 'ID Empleat' }"
+            [colSpan]="4"
+          >
+            <dxi-validation-rule
+              type="required"
+              message="Camp requerit"
+            ></dxi-validation-rule>
+          </dxi-item>
+          <dxi-item
+            dataField="username"
+            [label]="{ text: 'Nom usuari' }"
+            [colSpan]="4"
+          >
+            <dxi-validation-rule
+              type="required"
+              message="Camp requerit"
+            ></dxi-validation-rule>
+          </dxi-item>
+          <dxi-item
+            dataField="password"
+            [label]="{ text: 'Contrasenya' }"
+            [colSpan]="2"
+            [editorOptions]="{
+              stylingMode: 'filled',
+              placeholder: 'Contrasenya',
+              mode: 'password'
+            }"
+          >
+            <dxi-validation-rule
+              type="required"
+              message="Camp requerit"
+            ></dxi-validation-rule>
+          </dxi-item>
+          <dxi-item
+            dataField="confirmedPassword"
+            [label]="{ text: 'Confirma la contrasenya' }"
+            [colSpan]="2"
+            [editorOptions]="{
+              stylingMode: 'filled',
+              placeholder: 'Confirma la contrasenya',
+              mode: 'password'
+            }"
+          >
+            <dxi-validation-rule
+              type="required"
+              message="Camp requerit"
+            ></dxi-validation-rule>
+            <dxi-validation-rule
+              type="custom"
+              message="La contrasenya no coincideix"
+              [validationCallback]="confirmPassword"
+            >
+            </dxi-validation-rule>
+          </dxi-item>
+          <dxi-item itemType="button" [colSpan]="4">
+            <dxo-button-options
+              width="100%"
+              type="default"
+              [useSubmitBehavior]="true"
+              text="Enviar nou responsable"
+            >
+            </dxo-button-options>
+          </dxi-item>
+        </dx-form>
+      </form>
+    </dx-scroll-view>
+  </div>
+</dx-popup>
+<dx-button text="Crear un nou responsable" (onClick)="popUpVisibility()">
+</dx-button>

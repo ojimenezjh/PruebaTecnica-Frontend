@@ -1,0 +1,69 @@
+<dx-popup title="{{requestTitle()}}" [(visible)]="isPopupVisible" [resizeEnabled]="true">
+   
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view
+            width="100%"
+            height="100%"
+        >
+        <dx-button 
+            icon="close" style="float: right;" (onClick)="isPopupVisible = false">
+        </dx-button>
+    <form (submit)="onSubmit($event)" > 
+        <div class="loading-center" *ngIf="loading">
+            <dx-load-indicator width="150px" height="150px" [visible]="true"></dx-load-indicator>
+        </div> 
+        <dx-form *ngIf="!loading" id="form"
+            [formData]="formData"
+            labelLocation="top"
+            [colCountByScreen]="colCountByScreen"
+        >
+        <dxi-item *ngIf="this.type == 'Solicitud de remuneració'"
+            dataField="new_salary" 
+            [label]="{text: 'Nova remuneració a percebre'}"
+            editorType="dxNumberBox"
+            [colSpan]="4"
+        >
+            <dxi-validation-rule type="required" message="Camp requerit"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item *ngIf="this.type == 'Solicitud de vacances'"
+            dataField="start_date" 
+            [label]="{text: 'Data inici'}"
+            editorType="dxDateBox"
+            [colSpan]="2"
+        >
+            <dxi-validation-rule type="required" message="Camp requerit"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item *ngIf="this.type == 'Solicitud de vacances'"
+            dataField="finish_date" 
+            [label]="{text: 'Data fi'}"
+            editorType="dxDateBox"
+            [colSpan]="2"
+        >
+            <dxi-validation-rule type="required" message="Camp requerit"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item 
+            dataField="note" 
+            [label]="{text: 'Escriu aquí un comentari sobre la teva petició'}"
+            editorType="dxTextArea"
+            [editorOptions]="{ elementAttr: { class: 'text-area' } }"
+            [colSpan]="4"
+        >
+        </dxi-item>
+        <dxi-item itemType="button" [colSpan]="4">
+            <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" text="Envia la solicitud">
+            </dxo-button-options>
+          </dxi-item>
+        </dx-form>
+    </form>
+</dx-scroll-view>
+    </div>
+</dx-popup>
+<dx-button 
+    text="Solicitud personalitzada" (onClick)="popUpVisibility($event)">
+</dx-button>
+<dx-button 
+    text="Solicitud de remuneració" (onClick)="popUpVisibility($event)">
+</dx-button>
+<dx-button 
+    text="Solicitud de vacances" (onClick)="popUpVisibility($event)">
+</dx-button>

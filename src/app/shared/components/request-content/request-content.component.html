@@ -1,0 +1,83 @@
+<dx-popup title="{{requestTitle()}}" [(visible)]="isPopupVisible" [resizeEnabled]="true">
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view
+            width="100%"
+            height="100%"
+        >
+        <dx-button 
+            icon="close" style="float: right;" (onClick)="isPopupVisible = false">
+        </dx-button>
+        <div class="loading-center" *ngIf="loading">
+            <dx-load-indicator width="150px" height="150px" [visible]="true"></dx-load-indicator>
+        </div> 
+        <p>{{requestManagerUsername()}}</p>
+        <dx-form *ngIf="!loading" id="form"
+            [formData]="formData"
+            labelLocation="top"
+            [colCountByScreen]="colCountByScreen"
+        >
+        <dxi-item 
+            dataField="creation_date" 
+            [label]="{text: 'Data creació'}"
+            [colSpan]="2"
+            editorType="dxDateBox"
+        >
+        </dxi-item>
+        <dxi-item 
+            dataField="update_date" 
+            [label]="{text: 'Data actualització'}"
+            [colSpan]="2"
+            editorType="dxDateBox"
+        >
+        </dxi-item>
+        <dxi-item *ngIf="this.type == 'Solicitud de remuneració'"
+            dataField="new_salary" 
+            [label]="{text: 'Nova remuneració a percebre'}"
+            editorType="dxNumberBox"
+            [colSpan]="4"
+        >
+        </dxi-item>
+        <dxi-item *ngIf="this.type == 'Solicitud de vacances'"
+            dataField="start_date" 
+            [label]="{text: 'Data inici'}"
+            editorType="dxDateBox"
+            [colSpan]="2"
+        >
+        </dxi-item>
+        <dxi-item *ngIf="this.type == 'Solicitud de vacances'"
+            dataField="finish_date" 
+            [label]="{text: 'Data fi'}"
+            editorType="dxDateBox"
+            [colSpan]="2"
+        >
+        </dxi-item>
+        <dxi-item 
+            dataField="note" 
+            [label]="{text: 'Escriu aquí un comentari sobre la teva petició'}"
+            editorType="dxTextArea"
+            [editorOptions]="{ elementAttr: { class: 'text-area' } }"
+            [colSpan]="4"
+        >
+        </dxi-item>
+        </dx-form>
+        <div class="flex-box" *ngIf="this.accepted === null && this.canAccept">
+            <dx-button id="accept" text="Acceptar" (click)="onSubmit(true)">
+            </dx-button>
+            <dx-button id="deny" text="Denegar" (click)="onSubmit(false)">
+            </dx-button>
+        </div>
+        <div class="flex-box" *ngIf="this.accepted === 't'">
+            <dx-button id="accepted" text="Acceptada">
+            </dx-button>
+        </div>
+        <div class="flex-box" *ngIf="this.accepted === 'f'">
+            <dx-button id="denied" text="Denegada" >
+            </dx-button>
+        </div>
+</dx-scroll-view>
+    </div>
+</dx-popup>
+<dx-button class="details-button"
+    text="Veure detalls de la solicitud" (onClick)="popUpVisibility()">
+</dx-button>
+

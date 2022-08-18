@@ -1,0 +1,73 @@
+<app-request-content [request]="this.request" [type]="this.type"></app-request-content>
+
+<dx-data-grid class="dx-card wide-card dx-data-center"
+  [keyExpr]="['id']"
+  (onRowClick)="onRowClick($event)"
+  [dataSource]="dataSource"
+  [showBorders]="false"
+  [focusedRowEnabled]="true"
+  [columnAutoWidth]="true"
+  [columnHidingEnabled]="true"
+>
+
+  <dxo-paging [pageSize]="12"></dxo-paging>
+  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+  <dxi-column
+    dataField="accepted"
+    caption="Acceptada/denegada"
+    editorType="dxCheckBox"
+    [hidingPriority]="0">
+  </dxi-column>
+  <dxi-column
+    dataField="id"
+    caption="ID"
+    [hidingPriority]="2">
+  </dxi-column>
+  <dxi-column
+    dataField="id_manager"
+    alignment="center"
+    caption="ID Responable"
+    [hidingPriority]="8">
+  </dxi-column>
+  <dxi-column
+    dataField="username_manager"
+    caption="Usuari responsable"
+    width="150"
+    [hidingPriority]="6">
+  </dxi-column>
+  <dxi-column
+    dataField="id_employee"
+    alignment="center"
+    caption="ID Empleat"
+    [hidingPriority]="8">
+  </dxi-column>
+  <dxi-column
+  dataField="name_employee"
+  caption="Nom empleat"
+  [hidingPriority]="4">
+</dxi-column>
+  <dxi-column
+    dataField="surnames_employee"
+    caption="Cognoms empleat"
+    [hidingPriority]="5">
+  </dxi-column>
+  <dxi-column
+  dataField="department"
+  caption="Departament"
+  [hidingPriority]="1">
+</dxi-column>
+  <dxi-column
+    dataField="creation_date"
+    caption="Data de creació"
+    dataType="date"
+    [hidingPriority]="3">
+  </dxi-column>
+  <dxi-column
+    dataField="update_date"
+    caption="Data d'actualització"
+    dataType="date"
+    [hidingPriority]="0">
+  </dxi-column>
+</dx-data-grid>

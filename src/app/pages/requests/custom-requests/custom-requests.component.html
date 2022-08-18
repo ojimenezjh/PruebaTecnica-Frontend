@@ -1,0 +1,10 @@
+<div class="content-block flex-box">
+    <h2>Solicituds personalitzades</h2>
+</div>
+
+<div class="loading-center" *ngIf="loading">
+    <dx-load-indicator width="150px" height="150px" [visible]="true"></dx-load-indicator>
+</div>
+  
+
+<app-show-requests *ngIf="!loading" [dataSource]="this.dataSource" [type]="this.type"></app-show-requests>

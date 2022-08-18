@@ -1,0 +1,40 @@
+dx-button{
+    margin-left: 20px;
+    background-color: rgb(240, 107, 36);
+    color: white;
+}
+
+::ng-deep .text-area{
+    height: 30vh;
+}
+
+.details-button {
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+.flex-box{
+    display: flex;
+    justify-content: space-between;
+    dx-button{
+        margin: 0;
+        width: 48%;
+    }
+    #accept {
+        background-color: rgb(17, 122, 17);
+    }
+    #deny {
+        background-color: rgb(179, 43, 25);
+    }
+    #accepted {
+        width: 100%;
+        background-color: rgb(17, 122, 17);
+        pointer-events: none;
+    }
+    #denied {
+        width: 100%;
+        background-color: rgb(179, 43, 25);
+        pointer-events: none;
+    }
+
+}
